@@ -13,7 +13,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-gem 'rspec-rails', '~>3.0.0'
+gem 'minitest'
+group :test do
+  gem 'rspec-rails', '~>3.0.0'
+  gem 'shoulda-matchers'
+end
+
 gem 'google-api-client', '~> 0.7.1'
 
 # Use jquery as the JavaScript library
