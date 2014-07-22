@@ -10,9 +10,10 @@ require 'youtube_it'
 API_KEY = "AIzaSyCJQy1o0qwdB7LzwZ5gmLiSUUap6nfBpxw"
 client = YouTubeIt::Client.new(:dev_key => API_KEY)
 video = client.videos_by(:query => "penguin", :per_page => 5)
+Category.create(name: "Summer makeup")
 1.upto(5) do |i|
   video.videos.each do |vid|
-    Video.create(:title => vid.title, :url => vid.player_url, :image => vid.thumbnails[i].url)
+    Video.create(category_id: 1, :title => vid.title, :url => vid.player_url, :image => vid.thumbnails[i].url)
   end
 end
 

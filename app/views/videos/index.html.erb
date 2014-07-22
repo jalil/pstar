@@ -1,5 +1,6 @@
-<%@videos.each do |v| %>
-  <ul>
-  <li style="display:inline; float:left;padding:2px;">  <%=link_to (image_tag v.image, size: "150x150"), v.url, target: "_blank"%></li>
-</ul>
+  <%@category.videos.each do |v| %>
+   <ul style="list-style-type:none;margin:0; padding: 0">
+    <li style="float:left; display:inline; padding:2px;">  <%=link_to (image_tag v.image, size: "150x150"), v.url, target: "_blank"%> </li>
+   <li style="float:left; display:inline; border: 1px solid red;">  <%=v.category.name %></li>
+  </ul>
 <%end%>
