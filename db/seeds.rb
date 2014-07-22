@@ -9,6 +9,10 @@
 require 'youtube_it'
 API_KEY = "AIzaSyCJQy1o0qwdB7LzwZ5gmLiSUUap6nfBpxw"
 client = YouTubeIt::Client.new(:dev_key => API_KEY)
-video = client.videos_by(:query => "penguin", :per_page => 1)
-Video.create(:title => video.videos[0].title, :url => video.videos[0].player_url, :image => video.videos[0].thumbnails[0].url)
+video = client.videos_by(:query => "penguin", :per_page => 5)
+1.upto(5) do |i|
+  video.videos.each do |vid|
+    Video.create(:title => vid.title, :url => vid.player_url, :image => vid.thumbnails[i].url)
+  end
+end
 
