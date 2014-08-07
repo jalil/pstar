@@ -14,13 +14,19 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 gem 'minitest'
+gem 'haml-rails'
 gem 'youtube_it'
 group :test do
   gem 'rspec-rails', '~>3.0.0'
   gem 'shoulda-matchers'
 end
-
+gem 'pry-rails', :group => :development
 gem 'google-api-client', '~> 0.7.1'
+group :development do
+    gem "better_errors"
+end
+
+gem "binding_of_caller"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

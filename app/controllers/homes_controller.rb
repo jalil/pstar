@@ -1,0 +1,11 @@
+class HomesController < ApplicationController
+  
+  def index
+    @categories = Category.all
+  end
+
+  def show
+    @category = Category.find(params[:id])
+    @video = @category.videos
+  end
+end

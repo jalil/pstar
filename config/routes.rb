@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
-  resources :videos, only:[:index]
+  resources :videos, only:[:index, :show]
+  resource  :homes 
+
+  resources :categories do
+    resources :videos
+  end
+  #resources  :homes, only:[:index, :show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'videos#index'
+   root 'homes#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

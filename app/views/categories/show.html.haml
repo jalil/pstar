@@ -1,0 +1,5 @@
+-@categories.videos.each do |videos|
+  %ul
+    %li
+      %h4=videos.title[0,25]
+      =image_tag videos.image, size: "150x150"

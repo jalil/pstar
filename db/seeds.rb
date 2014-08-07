@@ -12,7 +12,9 @@ client = YouTubeIt::Client.new(:dev_key => API_KEY)
 video = client.videos_by(:query => "summer makeup tutorial", :per_page => 5)
 Video.destroy_all
 Category.create(name: "Summer makeup")
+Category.create(name: "T-shirts")
 video.videos.each_with_index do |vid, num|
   Video.create(category_id: 1, :title => vid.title, :url => vid.player_url, :image => vid.thumbnails[num].url)
 end
+Video.create(title: "Shontelle - T-Shirt", image: "http://i.ytimg.com/vi/Eb-Vfe61W6A/default.jpg", url: "http://overthumbs.com/galleries/fuck-face9/", category_id: 2)
 

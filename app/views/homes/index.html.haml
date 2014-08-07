@@ -1,0 +1,7 @@
+-@categories.each do |c|
+  %ul
+    %li
+      =link_to (image_tag c.videos.first.image, size: "150x150"), category_path(c), target: "_blank"
+      -#=link_to (image_tag c.videos.first.image, size: "150x150"), c.videos.first.category.name, target: "_blank"
+      %h2= c.videos.last.category.name
+      =@id

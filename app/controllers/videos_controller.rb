@@ -1,7 +1,12 @@
 class VideosController < ApplicationController
   
   def index
-    @videos = Video.all
-    @category = Category.first
+      @video = Video.find(1)
   end
+
+  def show
+    @category = Category.find(:params[:id])
+    @videos = @category.videos
+  end
+
 end
