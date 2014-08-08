@@ -9,12 +9,16 @@
 require 'youtube_it'
 API_KEY = "AIzaSyCJQy1o0qwdB7LzwZ5gmLiSUUap6nfBpxw"
 client = YouTubeIt::Client.new(:dev_key => API_KEY)
-video = client.videos_by(:query => "summer makeup tutorial", :per_page => 5)
+
 Video.destroy_all
-Category.create(name: "Summer makeup")
-Category.create(name: "T-shirts")
-video.videos.each_with_index do |vid, num|
-  Video.create(category_id: 1, :title => vid.title, :url => vid.player_url, :image => vid.thumbnails[num].url)
+Category.destroy_all
+video = ""
+
+open("/home/jalil/dev/mylook/db/keyword_list.txt").each do |cat|
+video = client.videos_by(:query => cat, :per_page => 5)
+category = Category.create(name: cat)
+  video.videos.each_with_index do |vid, num|
+    Video.create(category_id: category.id  , title: vid.title, url: vid.player_url, image: vid.thumbnails[num].url)
+  end
 end
-Video.create(title: "Shontelle - T-Shirt", image: "http://i.ytimg.com/vi/Eb-Vfe61W6A/default.jpg", url: "http://overthumbs.com/galleries/fuck-face9/", category_id: 2)
 
