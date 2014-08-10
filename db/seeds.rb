@@ -15,7 +15,7 @@ Category.destroy_all
 video = ""
 
 open("/home/jalil/dev/mylook/db/keyword_list.txt").each do |cat|
-video = client.videos_by(:query => cat, :per_page => 5)
+video = client.videos_by(:query => cat, :per_page => 6)
 category = Category.create(name: cat)
   video.videos.each_with_index do |vid, num|
     Video.create(category_id: category.id  , title: vid.title, url: vid.player_url, image: vid.thumbnails[num].url)

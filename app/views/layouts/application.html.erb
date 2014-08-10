@@ -7,7 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div  id="header"> 
+  <div class="search-input"> SEARCH:  </br>
+    <%=text_field_tag "" %>
+    <%=submit_tag "search" %>
+</div>
+  <h1><div class="title"><%=image_tag "makeup.png", size: "120x90" %> </div></h1>
+</div>
 <%= yield %>
 
 </body>

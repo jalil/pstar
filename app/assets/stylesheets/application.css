@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+.title {
+  font-weight: 700;
+  color red;
+}
+ #header {
+  height: 100px;
+  border-bottom: 1px solid; 
+  margin-bottom: 10px;
+ }
+
+ .search-input {
+  width: 400px;
+  font-weight: 700;
+  float: right;
+  margin-right: 100px;
+
+ }
