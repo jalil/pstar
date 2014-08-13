@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   resources :videos, only:[:index, :show]
   resource  :homes 
+  resource  :popups 
 
   resources :categories do
     resources :videos
+  end
+  resources :videos, only:[:show] do
+    collection do
+      post "search", to: "videos#search"
+    end
   end
   #resources  :homes, only:[:index, :show]
   # The priority is based upon order of creation: first created -> highest priority.

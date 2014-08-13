@@ -3,4 +3,9 @@ class Video < ActiveRecord::Base
   validates :url, presence:  :true, uniqueness: true
   validates :image, presence:  :true
   belongs_to :category
+
+
+  def self.search_by_title(search_term)
+    where("title  LIKE ?", "%#{search_term}%")
+  end
 end
