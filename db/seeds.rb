@@ -6,19 +6,35 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require 'youtube_it'
-API_KEY = "AIzaSyCJQy1o0qwdB7LzwZ5gmLiSUUap6nfBpxw"
-client = YouTubeIt::Client.new(:dev_key => API_KEY)
+require 'csv'
 
 Video.destroy_all
 Category.destroy_all
-video = ""
 
-open("/home/jalil/dev/mylook/db/keyword_list.txt").each do |cat|
-video = client.videos_by(:query => cat, :per_page => 6)
-category = Category.create(name: cat)
-  video.videos.each_with_index do |vid, num|
-    Video.create(category_id: category.id  , title: vid.title, url: vid.player_url, image: vid.thumbnails[num].url)
+    redtube_hash = {}
+
+  num = 0
+CSV.open("/home/jalil/dev/pface/db/stileproject.csv","r") do |row|
+  row.each do |vid|
+
+    id,title,date_added,url,duration,username,tags,category,thumbs, *rest = vid
+    #redtube_hash[category] = title,url,thumb
+    thumb = thumbs.split(";")[0] if thumbs
+    category = category.split(";")[0] if category
+    #puts "#{thumb} => #{url} => #{category}" if category
+    #category1 = Category.new(name: category) if category =! nil
+      next if category == nil
+        category1 = Category.new(name: category)
+         if category1.save 
+          #puts category1.inspect
+          Video.create(title: title, url: url, image: thumb, category_id: category1.id)
+         else
+         cat = Category.find_by_name(category1.name)
+          #puts cat.inspect
+          Video.create(title: title, url: url, image: thumb, category_id: cat.id)
+   end
   end
 end
 
+  
+  #num = 0
